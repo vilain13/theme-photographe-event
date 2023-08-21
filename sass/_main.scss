@@ -1,18 +1,3 @@
-/*
-Theme Name:     theme-photographe-event
-Theme URI:      http://localhost:8888/photographe-event/
-Author:         Gill
-Author URI:     http://localhost:8888/photographe-event/
-Description:    Theme personnalise pour le site photographe-event
-Version:        1.0.0
-Tags:           photographe freelance, vente de photos
-Text Domain:    photographe-event
-*/
-
-/*****  Déclaration des  polices de caractere du thème *******/
-
-/***** @import url('https://fonts.cdnfonts.com/css/space-mono'); ****/
-
 /**** Variables de couleurs ****/
 :root {
     --main-red-color: #E00000; /* var(--main-red-color) */
@@ -23,13 +8,30 @@ Text Domain:    photographe-event
     --main-grey-color: #C4C4C4; /* var(--main-grey-color) */
     --medium-grey-color: #D8D8D8;  /* var(--medium-grey-color) */
     --light-grey-color:#E5E5E5;  /* var(--light-grey-color) */
-
   }
+
 
 /**** Police de caracteres ****/
 body{
-    font-family: space-mono;
+    font-family: 'Space Mono', monospace;
+    font-size: 60px;
+    width: 1440px;
 }
 
+ul {
+    list-style-type: none;
+    :hover{
+        font-weight: 700;
+    } 
+    a{
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 16px;
+        color: var(--black-color);
+        text-decoration: none;
+        display: block ;
+         
+        } 
+  }
 
 

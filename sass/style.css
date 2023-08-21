@@ -1,0 +1,228 @@
+/**** Variables de couleurs ****/
+:root {
+  --main-red-color: #E00000; /* var(--main-red-color) */
+  --second-red: #fe5858; /* var(--second-red-color) */
+  --third-red:#FFD6D6; /* var(--third-red-color) */
+  --black-color: #000000; /* var(--black-color) */
+  --blue-color:#313144; /* var(--blue-color) */
+  --main-grey-color: #C4C4C4; /* var(--main-grey-color) */
+  --medium-grey-color: #D8D8D8; /* var(--medium-grey-color) */
+  --light-grey-color:#E5E5E5; /* var(--light-grey-color) */
+}
+
+/**** Police de caracteres ****/
+body {
+  font-family: "Space Mono", monospace;
+  font-size: 60px;
+  width: 1440px;
+}
+
+ul {
+  list-style-type: none;
+}
+ul :hover {
+  font-weight: 700;
+}
+ul a {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: var(--black-color);
+  text-decoration: none;
+  display: block;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 80px;
+}
+header img {
+  width: 20%;
+  padding-top: 31px;
+  padding-left: 146px;
+  height: 22px;
+  width: 344px;
+}
+header .menu-menu-principal-container {
+  width: 80%;
+}
+header .menu-menu-principal-container ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding-top: 31px;
+  padding-right: 146px;
+}
+header .menu-menu-principal-container ul li {
+  padding-left: 45px;
+}
+
+#menu-item-53 {
+  cursor: pointer;
+}
+
+/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+@media (max-width: 1000.1px) {
+  header {
+    width: 100%;
+    height: 72px;
+  }
+  header img {
+    padding-top: 31px;
+    padding-left: 40px;
+    height: 9px;
+    width: 138px;
+  }
+  header .menu-menu-principal-container {
+    display: none;
+  }
+  header .menu-burger {
+    width: 150px;
+  }
+  header .menu-burger button {
+    cursor: pointer;
+  }
+  header .menu-burger button .line {
+    width: 150px;
+  }
+  /** Animation Burger **/
+  .menu-burger {
+    cursor: pointer;
+    position: relative;
+  }
+  .menu-burger #span1 {
+    transform: translateY(0px);
+  }
+  .menu-burger #span3 {
+    transform: translateY(0px);
+  }
+  .menu-burger.active #span1 {
+    transform: translateY(5px) rotateZ(45deg);
+  }
+  .menu-burger.active #span2 {
+    background-color: transparent;
+  }
+  .menu-burger.active #span3 {
+    transform: translateY(-5px) rotateZ(-45deg);
+  }
+}
+/* Modale  (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  right: 0;
+  top: 0;
+  width: 530px;
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: var(--light-grey-color); /* Gris opacity */
+  animation: fadeinUp 5s;
+}
+
+/* Modal Contenu de la boite */
+.modal-content {
+  background-color: white;
+  margin: 0% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 5px solid var(--black-color);
+}
+.modal-content img {
+  width: 505px;
+  margin-left: -20px;
+}
+
+.close {
+  font-size: 30px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.imgModale {
+  cursor: pointer;
+}
+
+.ff-el-group {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  padding-left: 101px;
+}
+
+.ff-el-input-label {
+  font-weight: 500;
+}
+
+.nomContact {
+  font-weight: 700;
+}
+
+#ff_1_names_last_name_ {
+  width: 263px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+#ff_1_email {
+  width: 263px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+#ff_1_subject {
+  width: 263px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+#ff_1_message {
+  width: 263px;
+  height: 210px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.ff-btn-submit {
+  width: 270px;
+  height: 50px;
+  background-color: var(--medium-grey-color);
+  border: 1px solid var(--black-color);
+  cursor: pointer;
+}
+
+@keyframes fadeinUp {
+  0% {
+    transform: translateY(40%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+footer {
+  width: 100%;
+  height: 40px;
+}
+footer .menu-footer-container {
+  width: 100%;
+}
+footer .menu-footer-container ul {
+  display: flex;
+  margin: 0;
+  padding-top: 8px;
+  padding-right: 410px;
+  padding-left: 324px;
+}
+footer .menu-footer-container ul li {
+  margin-left: 86px;
+}/*# sourceMappingURL=style.css.map */

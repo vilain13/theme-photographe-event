@@ -1,0 +1,83 @@
+
+.banner {
+    margin-left:-144px;
+    margin-right:-144px;
+    img{
+    width:100%;
+    height:auto;
+    }
+}
+
+
+.afficher-plus-acceuil{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+
+
+.filters {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    height: 100%;
+ 
+
+    select{
+        width:257px;
+        margin-right: 36px;
+        text-transform: uppercase;
+        padding: 1.1rem 3.2rem;
+        font-weight: 500;
+        font-size: 12px;
+        font-family: "Poppins-Regular";
+        border-radius: 0.8rem;
+    }   
+    #sort-order{
+        float:right;
+        margin-right:0;
+    }
+}
+
+select{
+ 
+option:hover{
+  
+    background-color: red;
+}
+
+}
+
+    /****** MEDIA ECRAN TABLETTES  Max 768px  ********/
+@media (max-width: 768.1px){
+
+    .banner{
+        margin-left:0;
+        margin-right:0;
+    }
+
+    .filters{
+        padding: 2rem;
+        display: flex;
+        justify-content: unset;
+        flex-direction: column;
+        height: 100%;
+        #sort-order{
+            float: none;
+        }
+
+        select{
+            margin-bottom:10px;
+            margin-right:0;
+          
+
+        }
+    }
+}
+
+ 
+
+
+

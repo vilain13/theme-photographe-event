@@ -1,0 +1,120 @@
+/* Mise en forme du portofolio sur deux colonnes */
+
+.gallery {
+    display: grid;
+    margin: 0;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 1em;
+    grid-auto-flow: dense;
+}
+
+.photo {
+    img{
+        flex: 1;
+        max-width: 100%;
+        object-fit: cover;
+        height: 500px;
+    }
+    position: relative;
+    display: flex;
+    align-items: self-end;
+}
+
+
+.rollover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    font-size: 19px;
+    font-family: "SpaceMono-Regular";
+    color: #fff;
+    text-transform:uppercase;
+}
+
+
+.rollover-format {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 15px;
+  
+}
+
+.rollover-category {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 50%;
+    height: auto;
+    padding: 0 15px;
+}
+
+.rollover-fullscreen {
+    position: absolute;
+    top: 30px; /** A supprimer **/
+    right: 10px;
+    width: 34p;/** A supprimer **/
+    height: 34p;/** A supprimer **/
+    cursor:pointer;
+   
+}
+
+
+.rollover-eye {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46p;/** A supprimer **/
+    height: 32p;/** A supprimer **/
+    transform: translate(-50%, -50%);
+}
+
+.photo:hover .rollover-image{
+    opacity:0.6;
+}
+
+
+
+
+
+/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+@media (max-width: 768.1px){
+
+.portofolio{
+   margin:0 30px;
+    }
+}
+
+
+   /****** MEDIA ECRAN MOBILE  Max 425px  ********/
+   @media (max-width: 425.1px){
+
+    .banner{
+        margin-left:0;
+        margin-right:0 ;
+    }
+    
+    .gallery {
+        grid-template-columns: unset;
+
+     
+    }
+    .photo img {
+        
+        left: 0;
+        width: 100%;
+        height: 279px;
+        object-fit: cover;
+    }
+
+}    

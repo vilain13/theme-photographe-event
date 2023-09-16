@@ -9,27 +9,7 @@ Tags:           photographe freelance, vente de photos
 Text Domain:    photographe-event
 */
 
-/*****  Déclaration des  polices de caractere du thème *******/
 
-/***** @import url('https://fonts.cdnfonts.com/css/space-mono'); ****/
-
-/**** Variables de couleurs ****/
-:root {
-    --main-red-color: #E00000; /* var(--main-red-color) */
-    --second-red: #fe5858; /* var(--second-red-color) */
-    --third-red:#FFD6D6; /* var(--third-red-color) */
-    --black-color: #000000; /* var(--black-color) */
-    --blue-color:#313144; /* var(--blue-color) */
-    --main-grey-color: #C4C4C4; /* var(--main-grey-color) */
-    --medium-grey-color: #D8D8D8;  /* var(--medium-grey-color) */
-    --light-grey-color:#E5E5E5;  /* var(--light-grey-color) */
-
-  }
-
-/**** Police de caracteres ****/
-body{
-    font-family: space-mono;
-}
 
 
 

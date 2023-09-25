@@ -1,5 +1,3 @@
-
-
 <?php
 get_header(); // Inclut l'en-tête du thème
 ?>
@@ -7,8 +5,8 @@ get_header(); // Inclut l'en-tête du thème
 
 <main id="main" class="site-main" role="main">
 
-  
-        <?php
+
+ <?php
         // La boucle WordPress pour récupérer les éléments du Psot à afficher
         if (have_posts()) :
             while (have_posts()) :
@@ -29,32 +27,42 @@ get_header(); // Inclut l'en-tête du thème
                             <!-- Affichez les informations du Post Photo,-->
                             <?php
                             // Récupérer le Référence Photo du poste actuel
-                            $champ_format = get_post_meta(get_the_ID(), 'reference_photo', true);
+                            $champ_reference = get_post_meta(get_the_ID(), 'reference_photo', true);
                             $libelle_champ = get_post_meta(get_the_ID(), $nom_du_champ, true);
 
                             // Vérifiez si la valeur du champ personnalisé existe avant de l'afficher.
-                            if (!empty($champ_format)) {
-                                echo '<h3> REFERENCE : ' . $champ_format . '</h3>';
+                            if (!empty($champ_reference)) {
+                                echo '<h3> REFERENCE : ' . $champ_reference . '</h3>';
                                 
                             } else {
                                 echo '<h3> REFERENCE : aucune valeur renseignée </h3>';
                             }
 
                             // Récupérez la Catégorie du post actuel
-                            $categories = get_the_category();
+                            $categorie = get_the_terms(get_the_ID(), 'categorie');
 
-                            if (!empty($categories)) {
-                                echo '<h3> CATEGORIE : ' . $categories[0]->name . '</h3>';
+                            // Assurez-vous qu'il y a des termes associés à cette taxonomie
+                            if (!empty($categorie)) {
+                                echo '<h3> CATEGORIE : ' . $categorie[0]->name . '</h3>';
+                                
                             } else {
                                 echo '<h3> CATEGORIE : aucune valeur renseignée </h3>';
                             }
 
+                            // $categories = get_the_category();
+
+                            // // if (!empty($categories)) {
+                            // //     echo '<h3> CATEGORIE : ' . $categories[0]->name . '</h3>';
+                            // // } else {
+                            // //     echo '<h3> CATEGORIE : aucune valeur renseignée </h3>';
+                            // // }
+
                             // Récupérer les termes de la taxonomie "Formats" pour le post actuel
-                            $terms = get_the_terms(get_the_ID(), 'formats');
+                            $formatsTerm = get_the_terms(get_the_ID(), 'formats');    // modifiee 23 09
 
                             // Assurez-vous qu'il y a des termes associés à cette taxonomie
-                            if (!empty($terms)) {
-                                echo '<h3> FORMAT : ' . $terms[0]->name . '</h3>';
+                            if (!empty($formatsTerm)) {    // modifiee 23 09
+                                echo '<h3> FORMAT : ' . $formatsTerm[0]->name . '</h3>';    // modifiee 23 09
                                 
                             } else {
                                 echo '<h3> FORMAT : aucune valeur renseignée </h3>';
@@ -74,18 +82,16 @@ get_header(); // Inclut l'en-tête du thème
 
 
                             // Récupérer les termes de la taxonomie "Annee" pour le post actuel
-                            $terms = get_the_terms(get_the_ID(), 'annee');
+                            $annee = get_the_terms(get_the_ID(), 'annee');   // modifiee 23 09
 
                             // Assurez-vous qu'il y a des termes associés à cette taxonomie
-                            if (!empty($terms)) {
-                                echo '<h3> ANNEE : ' . $terms[0]->name . '</h3>';
+                            if (!empty($annee)) {                            // modifiee 23 09
+                                echo '<h3> ANNEE : ' . $annee[0]->name . '</h3>';              // modifiee 23 09
                                 
                             } else {
                                 echo '<h3> ANNEE : aucune valeur renseignée </h3>';
-                            }
-
-
-                            ?>                           
+                            }?>
+                        
                         </div>
                     </div>
 
@@ -102,8 +108,7 @@ get_header(); // Inclut l'en-tête du thème
                 </article>
                 <?php
             endwhile;
-        endif;
-        ?>
+        endif; ?>
 
         
                 <div class="section-pagination-photos"> 
@@ -170,7 +175,7 @@ get_header(); // Inclut l'en-tête du thème
             window.location.href = '<?php echo get_permalink($next_post->ID); ?>';
         }
     });
-</script>
+ </script> 
 
         <?php
 /////////////////////////////////////////
@@ -182,83 +187,59 @@ get_header(); // Inclut l'en-tête du thème
 
 
 ////////////////////////////////////////////////////////////////////////
-//  Afficher le Portofolio en fonction de la taxonomie Category du Post actif.
+//  Afficher le Portfolio en fonction de la taxonomie  CPTUI Categorie du Post actif.
 
-// Récupérer la catégorie (terme) associée au post actif
-$terms = wp_get_post_terms(get_the_ID(), 'category'); 
+// Récupérer la catégorie (terme) CPTUI  associée au post actif
+$categorie_filtre = wp_get_post_terms(get_the_ID(), 'categorie');   ////   modifiee 23 09
 
 
 // Vérifier si des termes (catégories) ont été trouvés
-if ($terms && !is_wp_error($terms)) {
-    $term_slug = $terms[0]->slug; // Prendre le slug du premier terme trouvé (vous pouvez adapter si nécessaire)
+if ($categorie_filtre && !is_wp_error($categorie_filtre)) {     ////   modifiee 23 09
+    $categorie_filtre_slug = $categorie_filtre[0]->slug; // Prendre le slug du premier terme trouvé (vous pouvez adapter si nécessaire)  ////   modifiee 23 09
     
     // Récupérer les images mises en avant du Custom Post Type "Portfolio" avec la catégorie correspondante
     $args = array(
         'post_type' => 'photo', // Slug  du CPTUI créé 
-        'posts_per_page' => 4,
+        'posts_per_page' => 2,
         'tax_query' => array(
             array(
-                'taxonomy' => 'category', 
+                'taxonomy' => 'categorie',  
                 'field' => 'slug',
-                'terms' => $term_slug, // Utilisez le slug de la catégorie du post actif
+                'terms' => $categorie_filtre_slug, // Utilisez le slug de la catégorie du post actif    
             ),
         ),
         'post__not_in' => array( get_the_ID() ), // Pour ne pas reprendre  la photo affichée du post actif
     );
+  
 
 
   // Afficher  les images mises en avant des posts avec la méme categorie que le Post Actif
-
-    $query = new WP_Query($args); ?>
-
+        ?>
         <div class="afficher-plus">
             <h3> Vous aimerez aussi ...</h3>
-    <?php if ($query->have_posts()) : 
-      
-                // Récupérer l'image mise en avant
-        if (has_post_thumbnail()) : ?>
+
             <div class="portofolio">
                 <div class="row gallery">
-                    <?php while ($query->have_posts()) : $query->the_post(); 
+        <?php
+    $query = new WP_Query($args); ?>
+
+    <?php if ($query->have_posts()) : 
+      $counter = 0; // Initialiser un compteur     AJOUT 25 09
+                // Récupérer les éléments à afficher dans le template part
+           
+                         while ($query->have_posts()) : $query->the_post(); 
                         $thumbnail_url = get_the_post_thumbnail_url();
-                        
-                        $categories = wp_get_post_terms(get_the_ID(), 'category');
+                        $categories = wp_get_post_terms(get_the_ID(), 'categorie');   ////   modifiee 23 09
                         $formats = wp_get_post_terms(get_the_ID(), 'formats');
+                        $lightbox_item_id = 'lightbox-item-' . $counter;     // AJOUT 25 09
+                        $counter++;     // AJOUT 25 09
                         ?>  
-                           
-                           
-                          
-                                <article class="photo filtered-image">
-                                    <div class="rollover-image rowling-image">
-                                        <span class="rollover-category category-label">
-                                            <?php
-                                            if (!empty($categories)) {
-                                                echo esc_html($categories[0]->name);
-                                            }
-                                            ?>
-                                        </span><br>
-                                        <span class="rollover-format format-label">
-                                            <?php
-                                            if (!empty($formats)) {
-                                                echo esc_html($formats[0]->name);
-                                            }
-                                            ?>
-                                        </span>
-                                        <span class="rollover-fullscreen fa-solid fa-expand fa-2xl"></span>
-                                        <a href="<?php the_permalink(); ?>" class="rollover-eye fa-solid fa-eye fa-2xl"></a>
-                                    </div>
-                                        <img class="img-fluid" src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?>">
-     
-                                                
-                                           
-                        
-                                </article>
-                          
+                            <?php get_template_part( '/template-parts/photo-block' );?>
                     <?php endwhile; ?>
                 </div>
             </div>
          
-        <?php endif;   
+     <?php   
     else :
         // Aucun résultat trouvé
         echo 'Aucune autre image trouvée dans cette catégorie.';
@@ -266,27 +247,12 @@ if ($terms && !is_wp_error($terms)) {
 }?>
 
 
-
-
-
-
-
-
-
-
-
-            <div class="bouton-afficherplus">
+            <a id="all-images" class="bouton-afficherplus" href="http://localhost:8888/photographe-event/">
                      <input class="bouton-post" type="button" value="Toutes les photos "/>
-            </div>
-
-
-
+            </a>
             
 
-
  </main>
-
-
 
 
 <?php

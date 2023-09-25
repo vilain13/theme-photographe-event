@@ -2,8 +2,6 @@
 
 
 .entry-post{
-    min-height: 700p;  /**  A supprimer **/
-    width: 100; /** A annuler **/
     display: flex;
     justify-content: flex-start;
     .entry-content{
@@ -11,14 +9,13 @@
         position: relative;
         display:flex;
         flex-direction: column;
-        flex-wrap:nowrap;
+       // flex-wrap:nowrap;
         justify-content: flex-end;
 
         .entry-meta{
             font-size: 14px;
             font-weight: 400; 
             text-transform: uppercase;
-            /** position: absolute; **/
             bottom: 0;
         }
     }
@@ -28,26 +25,21 @@
         width: 50%;
         position: relative;
         align-content: flex-end;
-        min-height: 850p; /** A supprimer **/
     
         img{
         width: 100%;
         height:auto;
         bottom:0;
         display: bloc;
-       /**  position:absolute;  **/
-  
         }
     }
 }
 
 .section-pagination-photos{
-    width:100; /** A supprimer **/
     display:flex;
     .activation-modale{
         display:flex ;
         width:50%;
-        
         border-top: solid;
         padding-top : 37px;
         padding-bottom:31px;
@@ -71,7 +63,7 @@
             .featured-image{
                 
                 img{
-                    min-height:120p; /** A supprimer **/
+                    min-height:120px; /** A supprimer **/
                     width: 100%;
                     height:auto;
                     box-shadow: 0 0 0px 1px;
@@ -80,7 +72,6 @@
                         transition:all 0.5s ease-in;
                         transform:scale(1.40); 
                     }
-                   
                 }
             }
             .arrows-nav{
@@ -97,18 +88,14 @@
                     font-size:24px;
                 }
                 }     
-            
         } 
     }
 }
 
-
     img{
-        width:25px;  
-        
+        width:25px;   
     }
    
-
 
 
 .afficher-plus{
@@ -116,11 +103,9 @@
     padding-top: 77px;
     margin-top: 52px;
     h3{
-       
         margin:0;
         padding-bottom:52px;
     }
-
 }
 
 .bouton-afficherplus{
@@ -174,10 +159,6 @@
 
 
 
-
-
-
-
 /****** MEDIA ECRAN MOBILE  Max 425px  ********/
 @media (max-width: 425.1px){
 
@@ -205,6 +186,4 @@
             display:none;
         } 
     }
- 
-   
 }

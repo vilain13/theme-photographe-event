@@ -10,14 +10,9 @@ height: 40px;
             justify-content: space-around;
             margin:0;
             padding-top:8px;
-            padding-right: 410p; //* A supprimer
-            padding-left: 324p; //* A supprimer
             li{
-                margin-left: 86p; //* A supprimer
                 font-size:16px;
                 margin-right: 10px;
-            
-            
             }
         }
     }
@@ -42,7 +37,6 @@ padding-left: 10px;
         .menu-footer-container{
             width:100%;
             ul{
-            
                 display:flex;
                 flex-direction: column;
                 align-items:center;
@@ -50,9 +44,6 @@ padding-left: 10px;
                     margin-top:24px;
                 }
              }
-
         }
-
     }
-
 }

@@ -1,4 +1,4 @@
-console.log("bonjour JS");
+console.log("bonjour script JS");
 
 document.addEventListener("DOMContentLoaded", function() {
  

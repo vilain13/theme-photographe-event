@@ -3,7 +3,7 @@
 
 get_header();
 
-/* Start the Loop affichage contenu de la page créée via WordPress*/
+/* Start the Loop affichage du contenu de la page créée via WordPress*/
 
 if (have_posts()) {
     while (have_posts()) {

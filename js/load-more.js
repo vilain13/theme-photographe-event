@@ -1,20 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-  console.log("Bonjour Loadmore  JS")
 
-//  Déclenchement de l'affichage d'images supplémentaires 
+//  Déclenchement de l'affichage d'images supplémentaires au clic sur bouton loadmore sur front-page
 
   jQuery(document).ready(function ($) {
       let page = 1;
+      localStorage.setItem('page', JSON.stringify(page));
       $("#load-more").on("click", function () {
+        page = JSON.parse(localStorage.getItem('page'));
         page++; // Ajout de 1 à la page
+        localStorage.setItem('page', JSON.stringify(page));
         $.ajax({
           type: "POST",
           url: './wp-admin/admin-ajax.php',
           dataType: "html",
           data: {
             action: "load_more_photos",
+         
             page : page,
+    
           },
           success: function (response) {
             $("#image-container").append(response);

@@ -13,10 +13,9 @@ function theme_enqueue_styles() {
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 function theme_enqueue_scripts() {
     wp_enqueue_script('theme-script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', false);
-    wp_enqueue_script('front-page-script', get_template_directory_uri() . '/js/front-page.js', array('jquery'), '1.0', false);
-    wp_enqueue_script('light-box-script', get_template_directory_uri() . '/js/light-box.js', array('jquery'), '1.0', false);
     wp_enqueue_script('load-more-script', get_template_directory_uri() . '/js/load-more.js', array('jquery'), '1.0', false);
     wp_enqueue_script('flitre-tri-script', get_template_directory_uri() . '/js/filtres-tri.js', array('jquery'), '1.0', false);
+    wp_enqueue_script('light-box-script', get_template_directory_uri() . '/js/light-box.js', array('jquery'), '1.0', false);
 } 
 
 
@@ -31,7 +30,6 @@ add_action( 'wp_enqueue_scripts', 'theme_single_scripts' );
 
 
 
-
 // Enregistrement de l'emplacement du menu
 function register_my_menu() {
     register_nav_menu( 'main-menu', __( 'Menu principal', 'text-domain' ) );
@@ -39,12 +37,12 @@ function register_my_menu() {
 add_action( 'after_setup_theme', 'register_my_menu' );
 
  
-//Creation du parametrage Logo su WP
+//Creation du parametrage Logo sur Wordpress
 
 function your_theme_new_customizer_settings($wp_customize) {
-    // add a setting for the site logo
+    // Ajout des parametres pour la gestion du logo du site
     $wp_customize->add_setting('your_theme_logo');
-    // Add a control to upload the logo
+    // Ajout chargement du logo du site
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'your_theme_logo', array(
         'label'    => 'Upload Logo',
         'section'  => 'title_tagline',
@@ -66,14 +64,14 @@ add_action( 'after_setup_theme', 'register_footer_menu' );
 
 
 
-///////////////////////// Code supplementaire  pour la navigation img de la page SINGLE.PHP  Xxxxxxxxxxx
+///////////////////////// Gestion de la navigation moni carroussel  de la page SINGLE.PHP  Xxxxxxxxxxx
 
 // Fonction pour obtenir l'ID du post précédent ou suivant trié par année
 function get_new_post_id() {
     $post_id = $_POST['post_id'];
     $direction = $_POST['direction'];
 
-    // Utilisez WP_Query pour obtenir l'ID du post précédent ou suivant trié par année.
+    // Utiliser WP_Query pour obtenir l'ID du post précédent ou suivant trié par année.
     $args = array(
         'post_type' => 'post',
         'post_status' => 'publish',
@@ -108,21 +106,21 @@ add_action('wp_ajax_nopriv_get_new_post_id', 'get_new_post_id');
 
 
 
-//////////////////////////////  Fonction pour pour la gestion des filtres   sur Taxonomie "Category" et "Formats"  avec Filtre sur "Date" date de publication post
+//////////////////////////////  Gestion  des filtres   sur Taxonomie "Category" et "Formats"  avec tri  sur "Date" date de publication post
 
 
 // Fonction pour filtrer les images en fonction des critères
 function filter_images() {
-  $category = sanitize_text_field($_POST['categorie']);    //   modifiee 23 09
+  $category = sanitize_text_field($_POST['categorie']);   
   $format = sanitize_text_field($_POST['format']);
   $sortOrder = sanitize_text_field($_POST['sortOrder']);
 
   $args = array(
-      'post_type' => 'photo',
+      'post_type' => 'photo', 
       'posts_per_page' => 12,
       'orderby' => 'date',
       'order' => $sortOrder,
-      'paged' => 1,
+      'page' => 1,
   );
 
 
@@ -132,22 +130,6 @@ function filter_images() {
 }
 
 
-
-
-  // Ajoutez des conditions pour les filtres
-  // if (!empty($category)) {
-  //     $args['categorie_name'] = $category;
-  // }
-//   if (!empty($category)) {
-//     $args['tax_query'] = array(
-//         array(
-//             'taxonomy' => 'categorie',
-//             'field' => 'slug',
-//             'terms' => $category,
-//         ),
-//     );
-// }
-
 if (!empty($category)) {
   $args['tax_query'][] = array(
       'taxonomy' => 'categorie',
@@ -155,18 +137,6 @@ if (!empty($category)) {
       'terms' => $category,
   );
 }
-
-
-
-  // if (!empty($format)) {
-  //     $args['tax_query'] = array(
-  //         array(
-  //             'taxonomy' => 'formats',
-  //             'field' => 'slug',
-  //             'terms' => $format,
-  //         ),
-  //     );
-  // }
 
   if (!empty($format)) {
     $args['tax_query'][] = array(
@@ -181,7 +151,7 @@ if (!empty($category)) {
 
   if ($query->have_posts()) :
       while ($query->have_posts()) : $query->the_post();
-          // Utilisez get_template_part pour charger le template-part photo-block
+          // Utiliser  get_template_part pour charger le template-part photo-block
           get_template_part('template-parts/photo-block');
       endwhile;
   else :
@@ -193,47 +163,34 @@ if (!empty($category)) {
   die(); // Important pour terminer la requête AJAX
 }
 
-// Ajoutez l'action WordPress pour la fonction AJAX
+// Ajouter l'action WordPress pour la fonction AJAX
 add_action('wp_ajax_filter_images', 'filter_images');
 add_action('wp_ajax_nopriv_filter_images', 'filter_images');
 
 
 
 
-//////////////////////////////  Fonction pour le chargement des images supplementaires  sur front-page
+//////////////////////////////  Fonction pour l'affichage  des images supplementaires  sur front-page ( bouton Charger Plus)
 
 // Fonction pour le chargement des images supplementaires sur front-page
 function load_more_photos()
 {
-  $ajaxposts = new WP_Query([
+  $page = $_POST['page'];
+  $args = array(
     'post_type' => 'photo',
-    'posts_per_page' => 1,
-    'paged' => $_POST['page'],
-  ]);
+    'posts_per_page' => 12,
 
-  $response = '';
+    'paged' => $page,
+  );
 
-  if ($ajaxposts->have_posts()) {
-    while ($ajaxposts->have_posts()) {
-      $ajaxposts->the_post();
-
-      $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 12,
-        'paged' => $_POST['page'],
-      );
-
-      $query = new WP_Query($args);
-
-      if ($query->have_posts()) {
-        while ($query->have_posts()) {
-          $query->the_post();
-          get_template_part('/template-parts/photo-block');
-        }
-      } else {
-        $response = 'Pas de photo supplémentaire à afficher !!!';
-      }
+  $query = new WP_Query($args);
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      // Utiliser  get_template_part pour charger le template-part photo-block
+      get_template_part('template-parts/photo-block'); 
     }
+    wp_reset_postdata(); // Réinitialiser les données des articles après la boucle
   } else {
     $response = 'Pas de photo supplémentaire à afficher !!!';
   }
@@ -244,8 +201,7 @@ function load_more_photos()
 
 
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
-add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
-
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');     
 
 
 

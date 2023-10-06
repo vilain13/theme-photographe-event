@@ -1,17 +1,24 @@
 <?php get_header();?>
 <body>
     <main>
-
+    
         <div class = "banner">
-        
-        <img class="" src="<?php echo get_template_directory_uri() . '/assets/Header.png'; ?> " alt="image header  Photographe Event"> 
+        <?php
+           // Affichage d'une image différente de cptui 'photo' à chaque actualisation de la page
+            query_posts(array('post_type' => 'photo', 'orderby' => 'rand', 'showposts' => 1 ));
+            if (have_posts()) :
+                while (have_posts()) : the_post(); ?>
+                <div class="banner-image" style="background-image: url('<?php echo the_post_thumbnail_url(); ?>');">
+                    <h1 class="banner-title">photographe event</h1>
+                </div>
+                <?php endwhile;
+            endif ?>    
         </div>
         
-        
-        
+        <!-- Selecteurs de filtres sur taxonomies categorie et formats et tri sur date post -->
         <div id="filter-section" class="filters">
         
-            <select onfocus="this.size=1;"  name="categorie" id="category-filter">
+            <select  name="categorie" id="category-filter">
                 <option value="" selected>TOUTES CATEGORIES</option>
                 <?php
                 $terms = get_terms('categorie');    // modifiee 23 09
@@ -21,7 +28,7 @@
                 ?>
             </select>
 
-            <select onfocus="this.size=1;"  name="format" id="format-filter">
+            <select  name="format" id="format-filter">
                 <option value="" selected>TOUS FORMATS</option>
                 <?php
                 $terms = get_terms('formats');
@@ -31,13 +38,14 @@
                 ?>
             </select>
 
-            <select onfocus="this.size=1;"  name="tri" id="sort-order">
+            <select  name="tri" id="sort-order">
                 <option value="">TRIER PAR</option>
                 <option value="asc">Plus Ancien</option>
                 <option value="desc">Plus Récent</option>
             </select>
-            </div>
-      
+         </div>
+
+       <!-- Portfolio -->
         <div  class="portofolio">
             <div id="image-container" class="row gallery">
                 <?php
@@ -67,11 +75,11 @@
             </div>
         </div>
         
-        <div id="load-more" class="bouton-afficherplus">
-            <input class="bouton-post"  type="button" value="Afficher plus" />
+        <div id="load-more" class="more-button">
+            <input class="post-button"  type="button" value="Afficher plus" />
         </div>
    
-       
+        
     </main>
 
 </body>

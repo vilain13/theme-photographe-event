@@ -1,4 +1,3 @@
-console.log("Bonjour  single.js");
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -9,33 +8,23 @@ document.addEventListener("DOMContentLoaded", function() {
         // au clic  sur le bouton page single.php
     buttonContact.onclick = function() {
         modal.style.display = "block";
-        console.log('activation modale via contact');
     };
 
 
-
-    // Gestion de l'affichage img navigation au suvol des fleches   dans single.php
+    // Gestion de l'affichage img navigation au survol Hover  des fleches   dans single.php
 
     jQuery(document).ready(function($) {
         $('.prev-post-arrow, .next-post-arrow').hover(function() {
-        let image = $(this).data('image');
-        if (image) {
-        $('.navigation-image img').attr('src', image);
-        }
+            let image = $(this).data('image');
+            if (image) {
+                $('.navigation-image img').attr('src', image);
+            }
         }, function() {
-        $('.navigation-image img').attr('src', );
+            $('.navigation-image img').attr('src', );
         });
-        });
+    });
+ });
 
-
-
-
-
-
-
-
-
-});
 
 
 

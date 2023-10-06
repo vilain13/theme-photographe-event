@@ -1,4 +1,4 @@
-/* Mise en forme du portofolio sur deux colonnes */
+/* Mise en forme du portfolio  */
 
 .gallery {
     display: grid;
@@ -81,9 +81,7 @@
 
 
 
-
-
-/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+/****** MEDIA ECRAN TABLETTE  Max 768px  ********/
 @media (max-width: 768.1px){
 
 .portofolio{
@@ -95,10 +93,7 @@
    /****** MEDIA ECRAN MOBILE  Max 425px  ********/
    @media (max-width: 425.1px){
 
-    .banner{
-        margin-left:0;
-        margin-right:0 ;
-    }
+
     
     .gallery {
         grid-template-columns: unset;

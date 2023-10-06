@@ -1,10 +1,10 @@
 
 
-<!-- The Modal -->
+<!-- Modale Contact  -->
 
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
+  <!--Contenu de la modal -->
   <div class="modal-content">
     
   <P class="close-cross">X</p>

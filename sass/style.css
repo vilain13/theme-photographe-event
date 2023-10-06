@@ -66,18 +66,21 @@ a {
   color: white;
 }
 
-/****** MEDIA ECRAN MOBILE  Max 425px  ********/
-@media (max-width: 425.1px) {
+/****** MEDIA ECRAN   Max 1024px  ********/
+@media (max-width: 1024.1px) {
   h2 {
     font-size: 46px;
     font-weight: 400;
   }
+}
+/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+@media (max-width: 425.1px) {
   h3 {
     font-size: 14px;
     margin-top: 20px;
   }
 }
-/* Mise en forme du portofolio sur deux colonnes */
+/* Mise en forme du portfolio  */
 .gallery {
   display: grid;
   margin: 0;
@@ -153,7 +156,7 @@ a {
   opacity: 0.6;
 }
 
-/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+/****** MEDIA ECRAN TABLETTE  Max 768px  ********/
 @media (max-width: 768.1px) {
   .portofolio {
     margin: 0 30px;
@@ -161,10 +164,6 @@ a {
 }
 /****** MEDIA ECRAN MOBILE  Max 425px  ********/
 @media (max-width: 425.1px) {
-  .banner {
-    margin-left: 0;
-    margin-right: 0;
-  }
   .gallery {
     grid-template-columns: unset;
   }
@@ -188,7 +187,7 @@ header img {
   width: 344px;
 }
 header .menu {
-  width: 56vw;
+  width: 55vw;
   display: flex;
   justify-content: flex-end;
   margin: 0;
@@ -198,7 +197,13 @@ header .menu li {
   padding-left: 45px;
 }
 
-/****** MEDIA ECRAN TABLETTE & MOBILE  Max 768px  ********/
+/****** MEDIA ECRAN   Max 1024px  ********/
+@media (max-width: 1024.1px) {
+  header .menu {
+    width: 40vw;
+  }
+}
+/****** MEDIA ECRAN TABLETTE  Max 768px  ********/
 @media (max-width: 768.1px) {
   body {
     margin: 0;
@@ -275,7 +280,7 @@ header .menu li {
     transition: top 1s ease;
     position: absolute;
     width: 100vw;
-    top: 50px;
+    top: 100px;
     padding: 0;
     left: 0;
   }
@@ -295,13 +300,22 @@ header .menu li {
     padding-left: 0px;
   }
 }
-.banner {
+.banner .banner-image {
+  width: 100vw;
   margin-left: -144px;
   margin-right: -144px;
+  height: 862px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.banner img {
-  width: 100%;
-  height: auto;
+.banner .banner-title {
+  color: white;
+  font-size: 8vw;
+  color: transparent;
+  -webkit-text-stroke: 3px white;
 }
 
 .afficher-plus-acceuil {
@@ -312,36 +326,30 @@ header .menu li {
 }
 
 .filters {
-  max-width: 1300px;
-  margin: 0 auto;
+  max-width: 1152px;
   padding: 2rem 0;
   height: 100%;
 }
 .filters select {
   width: 257px;
-  margin-right: 36px;
+  margin-right: 40px;
   text-transform: uppercase;
   padding: 1.1rem 3.2rem;
   font-weight: 500;
   font-size: 12px;
   font-family: "Poppins-Regular";
-  border-radius: 0.8rem;
+  border-radius: 0.9rem;
 }
 .filters #sort-order {
   float: right;
   margin-right: 0;
 }
 
-/****** MEDIA ECRAN TABLETTES  Max 768px  ********/
-@media (max-width: 768.1px) {
-  .banner {
-    margin-left: 0;
-    margin-right: 0;
-  }
+/****** MEDIA ECRAN  Max 1024px  ********/
+@media (max-width: 1024.1px) {
   .filters {
     padding: 2rem;
     display: flex;
-    justify-content: unset;
     flex-direction: column;
     height: 100%;
   }
@@ -351,6 +359,19 @@ header .menu li {
   .filters select {
     margin-bottom: 10px;
     margin-right: 0;
+  }
+}
+/****** MEDIA TABLETTE   Max 768px  ********/
+@media (max-width: 768.1px) {
+  .banner .banner-image {
+    margin-left: 0;
+    height: 600px;
+  }
+}
+/****** MEDIA MOBILE   Max 425px  ********/
+@media (max-width: 425.1px) {
+  .banner .banner-image {
+    max-height: 253px;
   }
 }
 /* Modale  (background) */
@@ -459,7 +480,7 @@ form.fluent_form_1 .ff-btn-submit {
     height: 100%;
   }
 }
-/****** MEDIA MOBILE  Max 768px  ********/
+/****** MEDIA MOBILE  Max 425px  ********/
 @media (max-width: 425.1px) {
   .modal {
     height: 100vh;
@@ -522,18 +543,15 @@ form.fluent_form_1 .ff-btn-submit {
   flex-direction: column;
   align-items: flex-end;
   width: 50%;
-  margin-right: 7px;
 }
 .section-pagination-photos .post-navigation #small-image {
   width: 81px;
   height: 150px;
 }
 .section-pagination-photos .post-navigation #small-image .featured-image img {
-  min-height: 120px; /** A supprimer **/
+  min-height: 120px;
   width: 100%;
   height: auto;
-  box-shadow: 0 0 0px 1px;
-  border: 3px solid white;
 }
 .section-pagination-photos .post-navigation #small-image .featured-image img:hover {
   transition: all 0.5s ease-in;
@@ -547,10 +565,12 @@ form.fluent_form_1 .ff-btn-submit {
 }
 .section-pagination-photos .post-navigation #small-image .arrows-nav .prev-post-arrow {
   margin: 0;
+  margin-left: -3px;
   font-size: 24px;
 }
 .section-pagination-photos .post-navigation #small-image .arrows-nav .next-post-arrow {
   margin: 0;
+  margin-right: 3px;
   font-size: 24px;
 }
 
@@ -568,7 +588,7 @@ img {
   padding-bottom: 52px;
 }
 
-.bouton-afficherplus {
+.more-button {
   margin-top: 53px !important;
   width: 100%;
   margin: 0;
@@ -577,7 +597,7 @@ img {
   margin-bottom: 64px;
 }
 
-.bouton-post {
+.post-button {
   font-size: 12px;
   font-weight: 400;
   width: 272px;
@@ -674,7 +694,7 @@ footer .menu-footer-container ul li {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: black;
+  background-color: var(--black-color);
   z-index: 10;
 }
 #lightbox .lightbox-next, #lightbox .lightbox-prev {
@@ -685,10 +705,10 @@ footer .menu-footer-container ul li {
   right: 0;
   top: 50%;
   margin-top: 14px;
-  z-index: 11;
+  z-index: 15;
   color: white;
   font-size: 15px;
-  background-color: black;
+  background-color: transparent;
   cursor: pointer;
 }
 #lightbox .lightbox-next:hover, #lightbox .lightbox-prev:hover {
@@ -721,22 +741,21 @@ footer .menu-footer-container ul li {
   width: 50px;
   height: 50px;
   position: absolute;
+  z-index: 20;
   top: 0;
   right: 50px;
   margin-top: 30px;
-  z-index: 12;
   cursor: pointer;
   font-size: xx-large;
-  background-color: black;
+  background-color: transparent;
 }
 
 .lightbox-meta {
   color: white;
-  background-color: black;
+  background-color: var(--black-color);
   position: absolute;
   width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+  padding-bottom: 17px;
   bottom: 0;
   left: 0;
   display: flex;
@@ -744,4 +763,21 @@ footer .menu-footer-container ul li {
   font-size: 15px;
   text-transform: uppercase;
   font-family: "SpaceMono-Regular";
+}
+
+/****** MEDIA ECRAN TABLETTE  Max 768px  ********/
+@media (max-width: 768.1px) {
+  #lightbox-close {
+    right: 15px;
+  }
+}
+/****** MEDIA ECRAN MOBILE  Max 425px  ********/
+@media (max-width: 425.1px) {
+  #lightbox .lightbox-next {
+    right: 35px;
+  }
+  #lightbox #lightbox-close {
+    top: -25px;
+    right: 0px;
+  }
 }/*# sourceMappingURL=style.css.map */

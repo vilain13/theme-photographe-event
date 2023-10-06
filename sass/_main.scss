@@ -73,21 +73,21 @@ ul {
 }
 
 
+
+/****** MEDIA ECRAN   Max 1024px  ********/
+@media (max-width: 1024.1px){
+
+h2{
+    font-size:46px;
+    font-weight: 400;
+}
+}
+
 /****** MEDIA ECRAN MOBILE  Max 425px  ********/
 @media (max-width: 425.1px){
 
-    h2{
-        font-size:46px;
-        font-weight: 400;
-        }
-
-    h3{
-        font-size:14px;
-        margin-top:20px;
-
-    }
-
- 
-  
-
+h3{
+    font-size:14px;
+    margin-top:20px;
+}
 }

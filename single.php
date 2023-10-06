@@ -5,26 +5,18 @@ get_header(); // Inclut l'en-tête du thème
 
 <main id="main" class="site-main" role="main">
 
-
  <?php
-        // La boucle WordPress pour récupérer les éléments du Psot à afficher
+        // La boucle WordPress pour récupérer les éléments du Post à afficher
         if (have_posts()) :
             while (have_posts()) :
                 the_post();?>
-            
-                        <div>
-                            <?php
-                        /* Récupération de la modale pour affichage au clic sur lien dans menu */
-                        get_template_part( '/template-parts/modale' );  /* -- Ajout --> */
-                        ?>
-                        </div>
                         
                 <article class="entry-post" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                     <div class="entry-content">
                         
                         <div class="entry-meta">
                             <h2 class="entry-title"><?php the_title(); ?></h2>
-                            <!-- Affichez les informations du Post Photo,-->
+                            <!-- Afficher les informations du Post Photo,-->
                             <?php
                             // Récupérer le Référence Photo du poste actuel
                             $champ_reference = get_post_meta(get_the_ID(), 'reference_photo', true);
@@ -38,7 +30,7 @@ get_header(); // Inclut l'en-tête du thème
                                 echo '<h3> REFERENCE : aucune valeur renseignée </h3>';
                             }
 
-                            // Récupérez la Catégorie du post actuel
+                            // Récupérer la Catégorie du post actuel
                             $categorie = get_the_terms(get_the_ID(), 'categorie');
 
                             // Assurez-vous qu'il y a des termes associés à cette taxonomie
@@ -49,20 +41,12 @@ get_header(); // Inclut l'en-tête du thème
                                 echo '<h3> CATEGORIE : aucune valeur renseignée </h3>';
                             }
 
-                            // $categories = get_the_category();
-
-                            // // if (!empty($categories)) {
-                            // //     echo '<h3> CATEGORIE : ' . $categories[0]->name . '</h3>';
-                            // // } else {
-                            // //     echo '<h3> CATEGORIE : aucune valeur renseignée </h3>';
-                            // // }
-
                             // Récupérer les termes de la taxonomie "Formats" pour le post actuel
-                            $formatsTerm = get_the_terms(get_the_ID(), 'formats');    // modifiee 23 09
+                            $formatsTerm = get_the_terms(get_the_ID(), 'formats');   
 
                             // Assurez-vous qu'il y a des termes associés à cette taxonomie
-                            if (!empty($formatsTerm)) {    // modifiee 23 09
-                                echo '<h3> FORMAT : ' . $formatsTerm[0]->name . '</h3>';    // modifiee 23 09
+                            if (!empty($formatsTerm)) {    
+                                echo '<h3> FORMAT : ' . $formatsTerm[0]->name . '</h3>';   
                                 
                             } else {
                                 echo '<h3> FORMAT : aucune valeur renseignée </h3>';
@@ -81,12 +65,12 @@ get_header(); // Inclut l'en-tête du thème
                             }
 
 
-                            // Récupérer les termes de la taxonomie "Annee" pour le post actuel
-                            $annee = get_the_terms(get_the_ID(), 'annee');   // modifiee 23 09
+                            // Récupérer les termes de  "Annee" pour le post actuel
+                            $annee = get_the_terms(get_the_ID(), 'annee');   
 
-                            // Assurez-vous qu'il y a des termes associés à cette taxonomie
-                            if (!empty($annee)) {                            // modifiee 23 09
-                                echo '<h3> ANNEE : ' . $annee[0]->name . '</h3>';              // modifiee 23 09
+                            // Assurez-vous qu'il y a des termes associés à Année
+                            if (!empty($annee)) {                           
+                                echo '<h3> ANNEE : ' . $annee[0]->name . '</h3>'; 
                                 
                             } else {
                                 echo '<h3> ANNEE : aucune valeur renseignée </h3>';
@@ -110,11 +94,11 @@ get_header(); // Inclut l'en-tête du thème
             endwhile;
         endif; ?>
 
-        
+        <!-- Ajout section " Vous aimerez aussi avec navigation -->
                 <div class="section-pagination-photos"> 
                     <div class="activation-modale">
                         <p> Cette photo vous interesse ? </p>
-                        <input id="bouton-contact" class="bouton-post" type="button" value="Contact" />
+                        <input id="bouton-contact" class="post-button" type="button" value="Contact" />
                     </div>
 
                     <div class="post-navigation">
@@ -177,16 +161,7 @@ get_header(); // Inclut l'en-tête du thème
     });
  </script> 
 
-        <?php
-/////////////////////////////////////////
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////
+<?php
 //  Afficher le Portfolio en fonction de la taxonomie  CPTUI Categorie du Post actif.
 
 // Récupérer la catégorie (terme) CPTUI  associée au post actif
@@ -224,15 +199,13 @@ if ($categorie_filtre && !is_wp_error($categorie_filtre)) {     ////   modifiee 
     $query = new WP_Query($args); ?>
 
     <?php if ($query->have_posts()) : 
-      $counter = 0; // Initialiser un compteur     AJOUT 25 09
+
                 // Récupérer les éléments à afficher dans le template part
            
                          while ($query->have_posts()) : $query->the_post(); 
                         $thumbnail_url = get_the_post_thumbnail_url();
-                        $categories = wp_get_post_terms(get_the_ID(), 'categorie');   ////   modifiee 23 09
+                        $categories = wp_get_post_terms(get_the_ID(), 'categorie');  
                         $formats = wp_get_post_terms(get_the_ID(), 'formats');
-                        $lightbox_item_id = 'lightbox-item-' . $counter;     // AJOUT 25 09
-                        $counter++;     // AJOUT 25 09
                         ?>  
                             <?php get_template_part( '/template-parts/photo-block' );?>
                     <?php endwhile; ?>
@@ -247,13 +220,11 @@ if ($categorie_filtre && !is_wp_error($categorie_filtre)) {     ////   modifiee 
 }?>
 
 
-            <a id="all-images" class="bouton-afficherplus" href="http://localhost:8888/photographe-event/">
-                     <input class="bouton-post" type="button" value="Toutes les photos "/>
+            <a id="all-images" class="more-button" href="http://localhost:8888/photographe-event/">
+                     <input class="post-button" type="button" value="Toutes les photos "/>
             </a>
             
-
  </main>
-
 
 <?php
 get_footer(); // Inclut le pied de page du thème

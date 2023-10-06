@@ -9,7 +9,7 @@ header{
         width: 344px;
     }
     .menu{
-        width:56vw; 
+        width:55vw; 
         display:flex;
         justify-content: flex-end;
         margin:0;
@@ -21,10 +21,18 @@ header{
 }
 
 
+/****** MEDIA ECRAN   Max 1024px  ********/
+@media (max-width: 1024.1px){
+    header{
+        .menu{
+            width: 40vw;
+        }
+    }
+
+}
 
 
-
-/****** MEDIA ECRAN TABLETTE & MOBILE  Max 768px  ********/
+/****** MEDIA ECRAN TABLETTE  Max 768px  ********/
 @media (max-width: 768.1px){
  body{
     margin:0;
@@ -109,7 +117,7 @@ header{
         transition: top 1s ease;
         position: absolute;
         width: 100vw;
-        top: 50px;
+        top: 100px;
         padding: 0;
         left:0;
         li{
